@@ -13,6 +13,7 @@ It is designed for beginner practice in log analysis and detection logic. It doe
 - Treats the start of the time window as inclusive: an event exactly on the boundary still counts.
 - Ignores blank lines and lines beginning with `#`.
 - Reports malformed log rows with an error message.
+- Validates and normalizes source IP addresses before counting events.
 
 A successful login does **not** reset earlier failures in this prototype. That is a deliberate simplification for this exercise, not a universal detection rule.
 
@@ -24,29 +25,29 @@ A successful login does **not** reset earlier failures in this prototype. That i
 
 ## Android / Termux setup
 
-1. Download `tinalab_soc_v1.zip` to your phone's Downloads folder.
-2. In Termux, install the required utilities if you do not already have them:
+You can run TinaLab directly on Android using Termux.
 
-   ```sh
-   pkg install python unzip
-   ```
+1. Install [Termux](https://termux.dev/) if you have not already.
+2. Install Git and Python:
 
-3. If Termux has not been given shared-storage permission, run:
+```bash
+pkg update
+pkg install git python
+```
 
-   ```sh
-   termux-setup-storage
-   ```
+3. Clone this repository:
 
-   Approve Android's permission prompt.
-4. Extract into a **new practice location**. This example creates a separate lab folder and does not overwrite files that already exist:
+```bash
+git clone https://github.com/ososanyachristianah-Generalist/TinaLab-SOC-Alert-Simulator.git
+```
 
-   ```sh
-   mkdir -p ~/practice-labs
-   unzip -n ~/storage/downloads/tinalab_soc_v1.zip -d ~/practice-labs
-   cd ~/practice-labs/tinalab_soc_v1
-   ```
+4. Enter the project directory:
 
-   If `~/practice-labs/tinalab_soc_v1` already exists from an earlier attempt, choose a different new destination first. Do not extract this ZIP over your existing `~/Tinalab` project, and do not use `unzip -o`.
+```bash
+cd TinaLab-SOC-Alert-Simulator
+```
+
+No ZIP download or third-party Python packages are required.
 
 ## Run the simulator
 
@@ -84,7 +85,7 @@ From the project folder:
 python -m unittest -v
 ```
 
-The 22 tests cover the included scenarios, rolling-window boundaries, events arriving out of order, successful logins, custom thresholds, malformed input, invalid IP addresses, and command-line error handling. The expected result is **22 passing tests**.
+The 23 tests cover the included scenarios, rolling-window boundaries, events arriving out of order, successful logins, custom thresholds, malformed input, invalid IP addresses, IP address normalization, and command-line error handling. The expected result is **23 passing tests**.
 
 ## Understand the included scenarios
 

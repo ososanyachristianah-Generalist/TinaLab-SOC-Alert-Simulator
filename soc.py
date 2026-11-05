@@ -24,7 +24,7 @@ def analyze(lines, threshold=5, window_seconds=60):
         except ValueError as exc:
             raise ValueError(f'Line {number}: invalid timestamp: {stamp}') from exc
         try:
-            ipaddress.ip_address(ip.strip())
+            ip = str(ipaddress.ip_address(ip.strip()))
         except ValueError as exc:
             raise ValueError(f'Line {number}: invalid IP address: {ip}') from exc
         if event not in ('LOGIN FAILED', 'LOGIN SUCCESS'):

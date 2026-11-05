@@ -31,6 +31,17 @@ class DetectorTests(unittest.TestCase):
         self.assertEqual(result["count"], 5)
         self.assertEqual(result["end"], datetime(2026, 10, 28, 10, 0, 25))
 
+    def test_ip_addresses_with_surrounding_spaces_are_normalized(self):
+        lines = [
+            '2026-01-01 10:00:00 | 192.168.1.20 | LOGIN FAILED',
+            '2026-01-01 10:00:10 |  192.168.1.20  | LOGIN FAILED',
+            '2026-01-01 10:00:20 | 192.168.1.20 | LOGIN FAILED',
+        ]
+        result = analyze(lines, threshold=3, window_seconds=60)
+        self.assertTrue(result['alert'])
+        self.assertEqual(result['ip'], '192.168.1.20')
+        self.assertEqual(result['count'], 3)
+
     def test_spread_out_failures_do_not_trigger_alert(self):
         self.assertFalse(self.scenario("02_spread_out.txt")["alert"])
 
