@@ -51,7 +51,7 @@ No ZIP download or third-party Python packages are required.
 
 ## Run the simulator
 
-From the `tinalab_soc_v1` folder:
+From the project root (the folder containing `soc.py`):
 
 ```sh
 python soc.py
@@ -79,7 +79,7 @@ python soc.py scenarios/01_alert.txt --window 60 --threshold 3
 
 ## Run the tests
 
-From the project folder:
+From the project root (the folder containing `soc.py`):
 
 ```sh
 python -m unittest -v
@@ -117,8 +117,6 @@ Use fictional or otherwise authorized sample data only.
 ## Limits and safety
 
 This is an illustrative offline detector, not a production SOC tool. It validates IP address syntax, but it does not verify that an address belongs to a real device or identify an actual attacker. It does not ingest live logs or correlate activity across multiple IP addresses. It reports the first alert it finds and uses a simplified detection rule that may produce false positives or false negatives. Do not use it as the sole basis for a real security decision.
-
-Keep this practice copy separate from your existing TinaLab project. Review changes before copying anything between projects.
 
 ## Project structure
 
