@@ -19,9 +19,26 @@ A successful login does **not** reset earlier failures in this prototype. That i
 
 ## Requirements
 
-- Python 3.8 or newer (no third-party Python packages required).
-- Android users can run it in Termux; a computer with Python also works.
+- Python 3.8 or newer.
+- Git (needed to clone the repository).
+- No third-party Python packages are required.
 - Internet is not needed to run the simulator after Python is installed.
+
+### Ubuntu / Debian setup
+
+Install Python and Git:
+
+    sudo apt update
+    sudo apt install python3 git
+
+Verify the installations:
+
+    python3 --version
+    git --version
+
+### Windows setup
+
+Install Python 3.8 or newer and Git before cloning the repository.
 
 ## Android / Termux setup
 
